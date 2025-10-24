@@ -1,0 +1,4 @@
+.marqueeWrap{margin-top:16px;overflow:hidden;border-top:1px solid #27272a;border-bottom:1px solid #27272a;padding:24px 0}
+.marquee{display:flex;gap:64px;animation:marquee 28s linear infinite}
+.marquee:hover{animation-play-state:paused}
+.marquee__img{height:48px;opacity:.85}
