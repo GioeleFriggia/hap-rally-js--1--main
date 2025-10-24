@@ -4,22 +4,20 @@ import "./NewsGrid.css";
 const news = [
   {
     id: 1,
-    title: "Rally Sulcis Iglesiente",
+    title: "Come diventare Pilota di Rally",
     date: "05 Mag 2025",
     img: "/foto/Locandina.jpg",
   },
   {
     id: 2,
-
-    title: "Rally Sulcis Iglesiente",
+    title: "Cos’è una Rally Experience?",
     date: "05 Mag 2025",
     img: "/foto/Locandina.jpg",
   },
   {
     id: 3,
-
-    title: "Rally Sulcis Iglesiente",
-    date: "05 Mag 2025",
+    title: "HAP al Rally Racing Meeting",
+    date: "10 Gen 2025",
     img: "/foto/Locandina.jpg",
   },
 ];
