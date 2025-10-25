@@ -1,21 +1,19 @@
-import Hero from '@/components/Hero';
-import StatsStrip from '@/components/StatsStrip';
-import ParallaxSection from '@/components/ParallaxSection';
-import NewsGrid from '@/components/NewsGrid';
-import TeamStrip from '@/components/TeamStrip';
-import PartnersMarquee from '@/components/PartnersMarquee';
-import WhatsappFAB from '@/components/WhatsappFAB';
+"use client";
+
+import Hero from "@/components/Hero";
+import ParallaxSection from "@/components/ParallaxSection";
+import TeamStrip from "@/components/TeamStrip";
+import StatsStrip from "@/components/StatsStrip";
+import NewsGrid from "@/components/NewsGrid";
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Hero />
-      <StatsStrip />
       <ParallaxSection />
-      <NewsGrid />
       <TeamStrip />
-      <PartnersMarquee />
-      <WhatsappFAB phone="+393488008762" />
-    </main>
+      <StatsStrip />
+      <NewsGrid />
+    </>
   );
 }

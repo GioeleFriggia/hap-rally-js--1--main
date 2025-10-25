@@ -1,9 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
+// 👇 AGGIUNTA
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // 👇 AGGIUNTA
+  const router = useRouter();
 
   // Effetto trasparente → opaco con lo scroll
   useEffect(() => {
@@ -24,6 +28,13 @@ export default function Navbar() {
     };
   }, [open]);
 
+  // 👇 AGGIUNTA: handler generico che fa push alla rotta e chiude il menu
+  const go = (e, path) => {
+    e.preventDefault();
+    setOpen(false);
+    router.push(path);
+  };
+
   return (
     <nav
       className={`navbar ${scrolled ? "navbar-scrolled" : ""} ${
@@ -33,7 +44,10 @@ export default function Navbar() {
       <div className="navbar-container">
         {/* LOGO */}
         <div className="navbar-logo">
-          <a href="#hero">HAP Rally Team</a>
+          {/* Mantengo ancora l'anchor, ma navigo alla home page */}
+          <a href="#hero" onClick={(e) => go(e, "/")}>
+            HAP Rally Team
+          </a>
         </div>
 
         {/* HAMBURGER ICON */}
@@ -50,32 +64,38 @@ export default function Navbar() {
         {/* MENU LINK */}
         <ul className={`nav-menu ${open ? "show" : ""}`}>
           <li>
-            <a href="#hero" onClick={() => setOpen(false)}>
+            {/* Home → / */}
+            <a href="#hero" onClick={(e) => go(e, "/")}>
               Home
             </a>
           </li>
           <li>
-            <a href="#team" onClick={() => setOpen(false)}>
+            {/* Team → /team */}
+            <a href="#team" onClick={(e) => go(e, "/team")}>
               Team
             </a>
           </li>
           <li>
-            <a href="#gallery" onClick={() => setOpen(false)}>
+            {/* Gallery → /gallery */}
+            <a href="#gallery" onClick={(e) => go(e, "/gallery")}>
               Gallery
             </a>
           </li>
           <li>
-            <a href="#news" onClick={() => setOpen(false)}>
+            {/* News → /news */}
+            <a href="#news" onClick={(e) => go(e, "/news")}>
               News
             </a>
           </li>
           <li>
-            <a href="#partners" onClick={() => setOpen(false)}>
+            {/* Partners → /partners */}
+            <a href="#partners" onClick={(e) => go(e, "/partners")}>
               Partners
             </a>
           </li>
           <li>
-            <a href="#footer" onClick={() => setOpen(false)}>
+            {/* Contatti → /contatti */}
+            <a href="#footer" onClick={(e) => go(e, "/contatti")}>
               Contatti
             </a>
           </li>

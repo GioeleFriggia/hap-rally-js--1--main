@@ -1,0 +1,70 @@
+.gate-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #111 0%, #000 100%);
+  background-image: url("/foto/HomePage.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.gate-card {
+  background: rgba(0, 0, 0, 0.78);
+  padding: 40px 50px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+  color: white;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  backdrop-filter: blur(2px);
+}
+
+.gate-card h1 {
+  font-size: 1.8rem;
+  color: #ffcc00;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.gate-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.gate-card input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  text-align: center;
+}
+
+.gate-card button {
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #000;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.gate-card button:hover {
+  background-color: #ffe45c;
+}
+
+.error {
+  color: #ff4d4d;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}

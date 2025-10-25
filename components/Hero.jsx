@@ -8,7 +8,8 @@ export default function Hero() {
       {/* Immagine principale */}
       <div className="hero__media">
         <Image
-          src="/foto/notte.png"
+          src="/foto/HomePage.jpg
+          "
           alt="Auto rally in azione"
           fill
           priority
