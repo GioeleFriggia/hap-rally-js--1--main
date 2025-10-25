@@ -1,17 +1,27 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Cookies from "js-cookie";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import "./gate.css";
 
 export default function GatePage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [redirectTo, setRedirectTo] = useState("/");
   const router = useRouter();
-  const params = useSearchParams();
-  const redirectTo = params.get("from") || "/";
 
-  const correctPassword = process.env.NEXT_PUBLIC_SITE_PASSWORD || "2025@2025@Rally";
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const from = params.get("from");
+      if (from) setRedirectTo(from);
+    }
+  }, []);
+
+  const correctPassword = useMemo(
+    () => process.env.NEXT_PUBLIC_SITE_PASSWORD || "2025@2025@Rally",
+    []
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -14,7 +14,7 @@ const PUBLIC_PATHS = [
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Permetti accesso ai path pubblici o ai file statici (immagini, CSS, JS)
+  // consenti asset statici comuni e path pubblici
   if (
     PUBLIC_PATHS.some((p) => pathname.startsWith(p)) ||
     pathname.match(/\.(png|jpg|jpeg|gif|svg|webp|ico|txt|css|js)$/)
@@ -25,7 +25,6 @@ export function middleware(req: NextRequest) {
   const cookie = req.cookies.get("site_authorized")?.value;
   const password = process.env.SITE_PASSWORD || "2025@2025@Rally";
 
-  // Se non ha cookie valido → reindirizza al gate
   if (cookie !== password) {
     const redirectUrl = req.nextUrl.clone();
     redirectUrl.pathname = "/gate";
@@ -33,11 +32,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(redirectUrl);
   }
 
-  // Autorizzato
   return NextResponse.next();
 }
 
-// ✅ matcher semplice e compatibile con Next.js 15
-export const config = {
-  matcher: ["/:path*"],
-};
+export const config = { matcher: ["/:path*"] };
