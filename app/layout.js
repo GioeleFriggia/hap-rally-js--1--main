@@ -2,6 +2,10 @@
 import "../components/Navbar.css";
 import "../styles/globals.css";
 
+import "../styles/globals.css";
+
+import "@/components/Gallery/Gallery.css";
+
 import Navbar from "@/components/Navbar";
 
 export const metadata = {

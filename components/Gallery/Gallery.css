@@ -1,0 +1,43 @@
+/* components/Gallery/Gallery.css */
+
+.gallery-title {
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.4rem);
+  margin: 1.25rem 0 1.5rem;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.gallery-grid {
+  --gap: 12px;
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  outline: 1px solid #ffffff14;
+  background: #0a0a0a;
+  transition: transform 0.25s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+}
+
+.gallery-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  transform: translateZ(0);
+  transition: opacity 0.3s ease;
+}
+
+.gallery-img:hover {
+  opacity: 0.85;
+}
