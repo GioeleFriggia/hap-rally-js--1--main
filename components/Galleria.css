@@ -1,32 +1,259 @@
-/* components/Galleria.css */
-
-/* Mantiene esattamente il look del resto del sito */
-.section {
-  width: 100%;
-  padding: 60px 0;
+/* ===== Rally Gallery - stile motorsport ===== */
+:root {
+  --asphalt: #0f0f0f;
+  --card: #151515;
+  --line: #ffffff1a;
+  --text: #f5f5f5;
+  --muted: #c9c9c9;
+  --accent: #ffd400; /* giallo racing */
 }
 
-.section h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: white;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
+/* wrap */
+.rg-wrap {
+  padding: clamp(16px, 3vw, 40px);
   margin: 0 auto;
+  max-width: 1400px;
+  color: var(--text);
 }
 
-/* Griglia auto responsive come nel resto del sito */
-.grid-auto {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
+/* heading */
+.rg-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.rg-title {
+  font-size: clamp(22px, 2.6vw, 34px);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rg-icon {
+  display: inline-block;
+  transform: translateY(-1px);
+  color: var(--accent);
+}
+.rg-sub {
+  opacity: 0.7;
+  font-size: 14px;
 }
 
-.grid-auto img {
+/* masonry: columns */
+.rg-masonry {
+  column-count: var(--cols, 4);
+  column-gap: 14px;
+}
+@media (max-width: 1200px) {
+  .rg-masonry {
+    column-count: 3;
+  }
+}
+@media (max-width: 900px) {
+  .rg-masonry {
+    column-count: 2;
+  }
+}
+@media (max-width: 560px) {
+  .rg-masonry {
+    column-count: 1;
+  }
+}
+
+/* card */
+.rg-card {
+  break-inside: avoid;
+  background: linear-gradient(180deg, #171717 0%, #121212 100%);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0 0 14px;
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.5s;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  cursor: zoom-in;
+}
+.rg-card.in {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.rg-img > span,
+.rg-img img {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
+}
+
+.rg-video-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.rg-video-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.05) contrast(1.05);
+}
+.rg-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--accent);
+  color: #111;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.rg-cap {
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Lightbox */
+.rg-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(
+    1200px 1200px at 50% 50%,
+    rgba(0, 0, 0, 0.86),
+    rgba(0, 0, 0, 0.96)
+  );
+  animation: lbIn 0.25s ease;
+}
+@keyframes lbIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.rg-stage {
+  position: relative;
+  width: min(96vw, 1400px);
+  max-height: 88vh;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0b0b0b;
+  border: 1px solid #ffffff1f;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+.rg-media {
+  width: 100%;
+  height: auto;
+}
+
+.rg-close {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  background: #000;
+  color: #fff;
+  border: 1px solid #ffffff33;
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 18px;
+  opacity: 0.8;
+}
+.rg-close:hover {
+  opacity: 1;
+}
+
+.rg-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #000;
+  color: #fff;
+  border: 1px solid #ffffff33;
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 30px;
+  opacity: 0.85;
+}
+.rg-prev {
+  left: 16px;
+}
+.rg-next {
+  right: 16px;
+}
+.rg-nav:hover {
+  opacity: 1;
+}
+
+.rg-lb-cap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.75));
+  color: #eee;
+  padding: 20px 16px 12px;
+  font-size: 14px;
+}
+
+/* overlay: speed lines + grain */
+.rg-speedlines,
+.rg-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+.rg-speedlines {
+  background-image: linear-gradient(
+      100deg,
+      transparent 0%,
+      transparent 45%,
+      rgba(255, 255, 255, 0.06) 46%,
+      transparent 47%
+    ),
+    linear-gradient(
+      100deg,
+      transparent 0%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.05) 51%,
+      transparent 52%
+    ),
+    linear-gradient(
+      100deg,
+      transparent 0%,
+      transparent 55%,
+      rgba(255, 255, 255, 0.04) 56%,
+      transparent 57%
+    );
+  background-size: 160px 100%, 220px 100%, 300px 100%;
+  background-position: -120px 0, -200px 0, -300px 0;
+  animation: lines 2.8s linear infinite;
+}
+@keyframes lines {
+  to {
+    background-position: 100% 0, 100% 0, 100% 0;
+  }
+}
+.rg-grain {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px
+  );
+  background-size: 18px 18px;
+  opacity: 0.35;
 }
