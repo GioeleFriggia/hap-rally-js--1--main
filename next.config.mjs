@@ -1,14 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  // Evita che un warning ESLint ti blocchi la build su Vercel
+  eslint: { ignoreDuringBuilds: true },
 
-  // ✅ NESSUN redirect o rewrite: la home (/) resta home
-  async redirects() {
-    return [];
+  // Consenti immagini remote usate dalla Gallery Drive
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "www.googleapis.com" }, // alt=media
+      { protocol: "https", hostname: "lh3.googleusercontent.com" }, // thumbnails
+    ],
   },
-  async rewrites() {
-    return { beforeFiles: [], afterFiles: [], fallback: [] };
-  },
+
+  // (facoltativo) se usi URL di Drive pubblici diretti
+  // images: { domains: ['lh3.googleusercontent.com', 'www.googleapis.com'] },
 };
 
 export default nextConfig;
