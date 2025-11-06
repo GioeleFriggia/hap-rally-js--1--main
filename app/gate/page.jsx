@@ -1,52 +1,42 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import "./gate.css";
 
-export default function GatePage() {
-  const router = useRouter();
-  const sp = useSearchParams();
+// Il contenuto reale che usa useSearchParams
+function GateContent() {
+  const params = useSearchParams();
 
-  const [pw, setPw] = useState("");
-  const [err, setErr] = useState("");
-
-  const publicPass = process.env.NEXT_PUBLIC_SITE_PASSWORD || "";
-  const backTo = sp.get("from") || "/";
-
-  useEffect(() => {
-    // Se non hai impostato una password pubblica, il gate non serve
-    if (!publicPass) router.replace(backTo);
-  }, [publicPass, backTo, router]);
-
-  function onSubmit(e) {
-    e.preventDefault();
-    if (pw === publicPass) {
-      document.cookie = `site-auth=ok; Path=/; Max-Age=${
-        60 * 60 * 24 * 7
-      }; SameSite=Lax`;
-      router.replace(backTo);
-    } else {
-      setErr("Password errata");
-    }
-  }
+  // Leggi eventuali query ?to=/qualcosa&key=abc
+  const to = params.get("to") || "/";
+  const key = params.get("key") || "";
 
   return (
-    <div className="gate-wrap">
-      <form className="gate-card" onSubmit={onSubmit}>
-        <h1>Accesso</h1>
-        <input
-          type="password"
-          placeholder="Password"
-          value={pw}
-          onChange={(e) => setPw(e.target.value)}
-          className="gate-input"
-          autoFocus
-        />
-        {err && <p className="gate-error">{err}</p>}
-        <button className="gate-btn" type="submit">
-          Entra
-        </button>
-      </form>
-    </div>
+    <section className="gate-wrap">
+      <h1 className="gate-title">Gate</h1>
+      <p className="gate-desc">Parametri letti dalla URL:</p>
+      <ul className="gate-list">
+        <li>
+          <strong>to:</strong> {to}
+        </li>
+        <li>
+          <strong>key:</strong> {key || "(nessuna chiave)"}
+        </li>
+      </ul>
+      <p className="gate-note">
+        Questa pagina è client-side e avvolta in Suspense per rispettare Next
+        15.
+      </p>
+    </section>
+  );
+}
+
+// Avvolgiamo il componente che usa useSearchParams in <Suspense>
+export default function GatePage() {
+  return (
+    <Suspense fallback={<div className="gate-fallback" />}>
+      <GateContent />
+    </Suspense>
   );
 }
