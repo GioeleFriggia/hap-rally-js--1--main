@@ -1,214 +1,44 @@
-/* ====== NAVBAR COMPLETA CON HAMBURGER RALLY BOUNCE ====== */
-
-:root {
-  --nav-h: 56px;
-}
-@media (min-width: 769px) {
-  :root {
-    --nav-h: 64px;
-  }
-}
-
-/* Navbar base */
+/* components/Navbar.css */
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  height: var(--nav-h);
-  z-index: 9999;
-
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(6px);
-  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+  z-index: 50;
+  background: #000;
+  border-bottom: 1px solid #ffffff12;
 }
 
-/* Quando si scrolla */
-.navbar.navbar-scrolled {
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(10px);
-}
-
-/* Contenitore interno */
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+.navbar__inner {
   max-width: 1200px;
   margin: 0 auto;
-}
-
-/* Logo */
-.navbar-logo a {
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 1.1rem;
-  letter-spacing: 0.5px;
-}
-
-/* Menu desktop */
-.nav-menu {
+  padding: 10px 16px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+}
+
+.navbar__logo {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.navbar__menu {
+  display: flex;
+  gap: 18px;
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style: none;
 }
 
-.nav-menu li a {
-  color: #fff;
+.navbar__menu a {
+  color: #ddd;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.25s ease;
+  font-weight: 600;
 }
 
-.nav-menu li a:hover {
-  color: #ffcc00;
+.navbar__menu a.active {
+  color: #f7c400;
 }
-
-/* ===== HAMBURGER ICON ===== */
-.hamburger {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: none;
-  z-index: 10000;
-  padding: 10px;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Stile moderno racing */
-.hamburger.modern {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  transition: transform 0.3s ease;
-}
-
-.hamburger.modern .bar {
-  width: 26px;
-  height: 3px;
-  background-color: #fff;
-  border-radius: 3px;
-  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-    opacity 0.3s ease, background-color 0.3s ease;
-  animation: idleBounce 2.5s infinite ease-in-out;
-}
-
-/* === Effetto X fluido === */
-.hamburger.modern.active .top {
-  transform: translateY(8px) rotate(45deg);
-  animation: clickBounce 0.4s ease forwards;
-}
-.hamburger.modern.active .middle {
-  opacity: 0;
-  transform: scaleX(0);
-}
-.hamburger.modern.active .bottom {
-  transform: translateY(-8px) rotate(-45deg);
-  animation: clickBounce 0.4s ease forwards;
-}
-
-/* Hover effetto rally */
-.hamburger.modern:hover .bar {
-  background-color: #ffcc00;
-  box-shadow: 0 0 6px rgba(255, 204, 0, 0.6);
-}
-
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-  .hamburger {
-    display: inline-flex;
-  }
-
-  /* Nascondi il menu orizzontale su mobile */
-  .nav-menu {
-    display: none;
-  }
-
-  /* Overlay mobile */
-  .nav-menu.show {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100dvh;
-
-    padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-
-    background: rgba(0, 0, 0, 0.96);
-    backdrop-filter: blur(10px);
-
-    gap: 18px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-
-    animation: menuSlideDown 0.3s ease forwards;
-  }
-
-  .nav-menu li a {
-    font-size: 1.4rem;
-    line-height: 1.25;
-  }
-}
-
-/* Nascondi hamburger su desktop sempre */
-@media (min-width: 769px) {
-  .hamburger {
-    display: none !important;
-  }
-}
-
-/* ===== ANIMAZIONI ===== */
-
-/* Leggero “rimbalzo” in idle, come un pulsante del quadro */
-@keyframes idleBounce {
-  0%,
-  100% {
-    transform: scaleX(1);
-  }
-  50% {
-    transform: scaleX(1.05);
-  }
-}
-
-/* Micro rimbalzo meccanico quando si clicca */
-@keyframes clickBounce {
-  0% {
-    transform: scale(1) rotate(0);
-  }
-  50% {
-    transform: scale(1.2) rotate(5deg);
-  }
-  100% {
-    transform: scale(1) rotate(0);
-  }
-}
-
-/* Animazione apertura menu */
-@keyframes menuSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.navbar__menu a:hover {
+  color: #fff;
 }

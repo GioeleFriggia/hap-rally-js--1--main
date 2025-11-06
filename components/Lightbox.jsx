@@ -1,4 +1,6 @@
+// components/Lightbox.jsx
 "use client";
+
 import { useState, useCallback, useEffect } from "react";
 
 export default function Lightbox({ items }) {
@@ -19,7 +21,6 @@ export default function Lightbox({ items }) {
     [items.length]
   );
 
-  // ESC per chiudere
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
@@ -64,14 +65,12 @@ export default function Lightbox({ items }) {
           >
             ‹
           </button>
-
           <img
             src={items[index].src}
             alt={items[index].alt}
             className="lb-img"
             onClick={(e) => e.stopPropagation()}
           />
-
           <button
             className="lb-nav lb-next"
             onClick={(e) => {
@@ -82,7 +81,6 @@ export default function Lightbox({ items }) {
           >
             ›
           </button>
-
           <button
             className="lb-close"
             onClick={(e) => {

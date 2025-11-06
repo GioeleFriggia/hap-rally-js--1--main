@@ -1,10 +1,11 @@
-export const metadata = { title: "Gallery | HAP Rally Team" };
+// app/gallery/page.jsx
+import GalleryDrive from "@/components/GalleryDrive";
+
+export const metadata = {
+  title: "Gallery",
+  description: "Galleria foto (Google Drive) – Team Pinna Corse",
+};
 
 export default function GalleryPage() {
-  return (
-    <section className="section container">
-      <h1>Gallery</h1>
-      {/* Inserisci qui il tuo componente Galleria/Gallery */}
-    </section>
-  );
+  return <GalleryDrive />;
 }

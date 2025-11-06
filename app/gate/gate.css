@@ -1,62 +1,141 @@
-.gate-container {
+.gd-wrap {
+  padding: 48px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.gd-title {
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+.gd-error {
+  background: #4b1111;
+  color: #ffd6d6;
+  padding: 12px 16px;
+  border-radius: 10px;
+}
+.gd-album {
+  margin-top: 28px;
+}
+.gd-album-header {
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: radial-gradient(circle at center, #111 0%, #000 100%);
-  background-image: url("/foto/HomePage.jpg");
-  background-size: cover;
-  background-position: center;
-}
-.gate-card {
-  background: rgba(0, 0, 0, 0.78);
-  padding: 40px 50px;
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
-  color: white;
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
-  backdrop-filter: blur(2px);
-}
-.gate-card h1 {
-  font-size: 1.8rem;
-  color: #ffcc00;
+  gap: 16px;
   margin-bottom: 10px;
 }
-.subtitle {
-  opacity: 0.8;
-  margin-bottom: 20px;
+.gd-album-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0;
 }
-.gate-card form {
+.gd-count {
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+.gd-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.gd-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #ffffff12;
+  background: #151515;
+  aspect-ratio: 4/3;
+  padding: 0;
+  cursor: pointer;
+}
+
+.gd-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+.gd-card:hover .gd-img {
+  transform: scale(1.03);
+}
+
+.gd-skeleton {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+.gd-skel-card {
+  height: 180px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #1c1c1c, #222, #1c1c1c);
+  animation: gd-shimmer 1.2s infinite;
+}
+@keyframes gd-shimmer {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+/* Lightbox */
+.gd-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
 }
-.gate-card input {
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: none;
-  font-size: 1rem;
-  outline: none;
+.gd-full {
+  max-width: min(92vw, 1400px);
+  max-height: 82vh;
+  object-fit: contain;
+}
+.gd-figure {
+  margin: 0;
   text-align: center;
 }
-.gate-card button {
-  background-color: #ffcc00;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 12px;
-  color: #000;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-.gate-card button:hover {
-  background-color: #ffe45c;
-}
-.error {
-  color: #ff4d4d;
+.gd-caption {
   margin-top: 8px;
-  font-size: 0.9rem;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.gd-close,
+.gd-nav {
+  position: absolute;
+  top: 16px;
+  background: #111;
+  color: #fff;
+  border: 1px solid #ffffff33;
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+}
+.gd-close {
+  right: 16px;
+}
+.gd-prev,
+.gd-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.gd-prev {
+  left: 16px;
+}
+.gd-next {
+  right: 16px;
 }

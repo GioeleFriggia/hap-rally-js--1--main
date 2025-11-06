@@ -1,97 +1,112 @@
-/* Sezione */
-.team {
-  background: #0a0a0a;
-  border-top: 1px solid #27272a;
-  border-bottom: 1px solid #27272a;
+/* ===== STATS RACING (Toyota-style) ===== */
+
+.stats-strip {
+  position: relative;
+  z-index: 1; /* sopra alla grana del tema */
 }
 
-.team__head {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
+.stats-title {
+  font-family: "Space Grotesk", "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  font-size: clamp(22px, 3vw, 28px);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 18px;
+  color: #ffde59;
 }
 
-/* Griglia 2 card larghe */
-.team__grid--two {
+.stats-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(420px, 1fr)); /* 2 colonne larghe */
-  gap: 3rem;
-  justify-content: center;
-  align-items: stretch;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-@media (max-width: 900px) {
-  .team__grid--two {
-    grid-template-columns: 1fr; /* stack su mobile */
-    gap: 2rem;
+@media (min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
   }
 }
 
-/* Card */
-.team__card {
-  background: #0e0e0e;
-  border-radius: 18px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-  width: 100%;
-  max-width: 640px; /* ampia ma contenuta */
-}
-
-.team__card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 26px rgba(255, 0, 0, 0.25);
-}
-
-/* Immagine */
-.team__img {
+.stat-card {
   position: relative;
-  width: 100%;
-  height: 460px; /* alta per far stare bene il soggetto */
+  padding: 18px 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 16, 16, 0.85),
+    rgba(16, 16, 16, 0.6)
+  );
+  border: 1px solid #262626;
+  border-radius: 16px;
   overflow: hidden;
 }
 
-.team__imgEl {
-  object-fit: cover; /* il focus lo gestiamo inline */
-}
-
-/* Effetto racing: overlay leggero */
-.team__overlay {
+/* Accento diagonale racing */
+.stat-card::after {
+  content: "";
   position: absolute;
-  inset: 0;
+  right: -40px;
+  top: -40px;
+  width: 120px;
+  height: 120px;
+  transform: rotate(35deg);
   background: radial-gradient(
-    110% 60% at 100% 100%,
-    rgba(255, 0, 0, 0.06),
-    transparent 60%
+    closest-side,
+    rgba(255, 230, 0, 0.18),
+    transparent
   );
   pointer-events: none;
-  opacity: 0.6;
-  transition: transform 0.5s ease, opacity 0.3s ease;
 }
 
-.team__card:hover .team__overlay {
-  transform: scale(1.05);
-  opacity: 0.8;
+/* Valore numerico grande */
+.stat-value {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  /* Numeri tabulari (mono-spaziati) per allineare perfettamente */
+  font-family: "Space Grotesk", "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 5vw, 42px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums; /* <-- chiave */
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+  /* Look motorsport */
+  background: linear-gradient(90deg, #fff, #ffe600 60%, #ffc400);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 24px rgba(255, 230, 0, 0.12);
 }
 
-/* Corpo card */
-.team__body {
-  padding: 2rem 1.5rem 2.2rem;
-  text-align: center;
+.stat-num {
+  /* mantiene il gradient sulla parte numerica */
 }
 
-.team__name {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: #fff;
-  margin: 0 0 0.35rem 0;
-  letter-spacing: 0.3px;
+.stat-suffix {
+  font-size: 0.5em;
+  font-weight: 700;
+  margin-left: 2px;
+  -webkit-text-fill-color: currentColor; /* il suffisso usa il colore corrente */
+  text-shadow: none;
+  color: #ffe066;
 }
 
-.team__role {
-  font-size: 1.05rem;
-  color: #bdbdbd;
-  letter-spacing: 0.4px;
-  margin: 0;
+/* Etichetta sotto */
+.stat-label {
+  margin-top: 8px;
+  font-family: "Roboto Condensed", "Space Grotesk", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  color: #c7c7c7;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* Hover: più “race” */
+.stat-card:hover .stat-value {
+  filter: drop-shadow(0 0 12px rgba(255, 230, 0, 0.16));
+  transform: translateY(-1px);
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
