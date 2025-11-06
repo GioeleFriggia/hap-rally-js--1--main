@@ -2,9 +2,16 @@
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 50;
+  /* Mettila sopra a qualsiasi overlay o sezione */
+  z-index: 100000; /* più alto di qualsiasi cosa nella pagina */
   background: #000;
   border-bottom: 1px solid #ffffff12;
+
+  /* Assicura che riceva i click anche se un overlay ha pointer-events impostati male */
+  pointer-events: auto;
+}
+.navbar * {
+  pointer-events: auto;
 }
 
 .navbar__inner {
@@ -20,6 +27,7 @@
   color: #fff;
   font-weight: 700;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .navbar__menu {
@@ -28,17 +36,25 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
-.navbar__menu a {
+.navbar__menu a,
+.navbar__link {
   color: #ddd;
   text-decoration: none;
   font-weight: 600;
+  line-height: 1;
+  padding: 8px 6px;
+  border-radius: 8px;
+  transition: color 0.15s ease, background 0.15s ease;
 }
 
-.navbar__menu a.active {
+.navbar__menu a.active,
+.navbar__link.is-active {
   color: #f7c400;
 }
-.navbar__menu a:hover {
+.navbar__menu a:hover,
+.navbar__link:hover {
   color: #fff;
 }

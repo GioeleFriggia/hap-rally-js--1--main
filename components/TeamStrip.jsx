@@ -1,17 +1,10 @@
+"use client";
 import Image from "next/image";
 import "./TeamStrip.css";
 
 const team = [
-  {
-    name: "Marco Pinna",
-    role: "Pilota",
-    img: "/foto/Pilotapng.png", // metti il file in /public/foto/
-  },
-  {
-    name: "Gaetano Pinna",
-    role: "Navigatore",
-    img: "/foto/Navigatore.png", // metti il file in /public/foto/
-  },
+  { name: "Marco Pinna", role: "Pilota", img: "/foto/Pilotapng.png" },
+  { name: "Gaetano Pinna", role: "Navigatore", img: "/foto/Navigatore.png" },
 ];
 
 export default function TeamStrip() {
@@ -27,20 +20,18 @@ export default function TeamStrip() {
         </div>
 
         <div className="team__grid team__grid--two">
-          {team.map((t, index) => (
+          {team.map((t, i) => (
             <div key={t.name} className="card team__card">
               <div className="team__img">
                 <Image
                   src={t.img}
                   alt={t.name}
                   fill
-                  sizes="(min-width: 900px) 45vw, 100vw"
                   className="team__imgEl"
-                  /* Focus alto sul NAVIGATORE (index === 1) per non tagliare il casco */
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: index === 1 ? "center top" : "center",
-                  }}
+                  sizes="(min-width: 900px) 45vw, 100vw"
+                  // tengo il volto un filo più alto sul navigatore
+                  style={{ objectPosition: i === 1 ? "center 40%" : "center" }}
+                  priority={i === 0}
                 />
                 <div className="team__overlay" />
               </div>

@@ -2,21 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
 
-  images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "images.unsplash.com" },
-      { protocol: "https", hostname: "i.ytimg.com" },
-      { protocol: "https", hostname: "img.youtube.com" },
-    ],
-    formats: ["image/avif", "image/webp"],
-  },
-
-  // Evita che warning di lint/ts blocchino il deploy
-  eslint: { ignoreDuringBuilds: true },
-  typescript: { ignoreBuildErrors: true },
-
+  // ✅ NESSUN redirect o rewrite: la home (/) resta home
   async redirects() {
-    return [{ source: "/index", destination: "/", permanent: true }];
+    return [];
+  },
+  async rewrites() {
+    return { beforeFiles: [], afterFiles: [], fallback: [] };
   },
 };
 

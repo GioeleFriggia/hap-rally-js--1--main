@@ -133,3 +133,28 @@ a {
 }
 
 /* file-specific styles are in components/*.css */
+/* ——— Sicurezze anti-overlay che coprono la navbar ——— */
+
+/* Se usi overlay di tema (grana/speed lines), non devono prendere i click */
+.rally-theme::before,
+.rally-theme::after {
+  pointer-events: none;
+}
+
+/* Eventuali sezioni “full-screen” NON devono coprire la navbar */
+.gd-wrap,
+.gd-grid,
+.gd-album,
+.hero,
+.section,
+.page {
+  position: relative;
+  z-index: 1; /* sotto la navbar, sopra il background */
+}
+
+/* La lightbox quando è aperta deve stare sopra TUTTO (compresa navbar),
+   ma quando è chiusa non esiste nel DOM, quindi non blocca */
+.gd-lightbox {
+  z-index: 99999; /* sotto la navbar (100000) per permettere click sulla nav? 
+                         Se vuoi che la lightbox stia SOPRA la navbar, porta a 200000 */
+}

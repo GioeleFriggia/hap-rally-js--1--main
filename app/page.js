@@ -6,7 +6,8 @@ import TeamStrip from "@/components/TeamStrip";
 import StatsStrip from "@/components/StatsStrip";
 import NewsGrid from "@/components/NewsGrid";
 
-export default function Home() {
+// ✅ Nessun useRouter(), nessun router.push(), nessun redirect
+export default function HomePage() {
   return (
     <>
       <Hero />

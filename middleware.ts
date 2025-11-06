@@ -1,38 +1,27 @@
-import { NextRequest, NextResponse } from "next/server";
+// middleware.ts
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-// Rotte pubbliche non protette
-const PUBLIC_PATHS = [
-  "/gate",
-  "/_next",
-  "/api",
-  "/favicon.ico",
-  "/robots.txt",
-  "/sitemap.xml",
-  "/foto",
-];
-
+/**
+ * Protegge SOLO /admin/**
+ * Le altre rotte del sito (/, /team, /gallery, /news, /partners, /contatti)
+ * NON vengono toccate e funzionano normalmente.
+ */
 export function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+  const pass = process.env.SITE_PASSWORD;
+  // Se non c'è password configurata, non proteggere nulla
+  if (!pass) return NextResponse.next();
 
-  // consenti asset statici comuni e path pubblici
-  if (
-    PUBLIC_PATHS.some((p) => pathname.startsWith(p)) ||
-    pathname.match(/\.(png|jpg|jpeg|gif|svg|webp|ico|txt|css|js)$/)
-  ) {
-    return NextResponse.next();
-  }
+  // Verifica cookie impostato dopo il login su /gate
+  const auth = req.cookies.get("site-auth")?.value;
+  if (auth === "ok") return NextResponse.next();
 
-  const cookie = req.cookies.get("site_authorized")?.value;
-  const password = process.env.SITE_PASSWORD || "2025@2025@Rally";
-
-  if (cookie !== password) {
-    const redirectUrl = req.nextUrl.clone();
-    redirectUrl.pathname = "/gate";
-    redirectUrl.searchParams.set("from", pathname);
-    return NextResponse.redirect(redirectUrl);
-  }
-
-  return NextResponse.next();
+  // Reindirizza a /gate, poi torna alla pagina richiesta
+  const url = new URL("/gate", req.url);
+  url.searchParams.set("from", req.nextUrl.pathname + req.nextUrl.search);
+  return NextResponse.redirect(url);
 }
 
-export const config = { matcher: ["/:path*"] };
+export const config = {
+  matcher: ["/admin/:path*"], // <-- SOLO /admin è protetta
+};
