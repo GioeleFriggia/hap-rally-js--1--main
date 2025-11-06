@@ -1,25 +1,24 @@
 /* ============================
    FONT GLOBALE: Courier Prime
-   (typewriter pulito, leggibile)
    ============================ */
 
 :root {
-  /* next/font espone --font-typewriter da layout.js */
-  --font-typewriter-fallback: "Cutive Mono", "IBM Plex Mono", ui-monospace,
+  --font-typewriter: CourierPrime, "Courier Prime", ui-monospace,
     "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
     Courier, monospace;
 }
 
-/* Applica il font a tutto il testo principale */
+/* Forza il font globalmente */
 html,
-body {
-  font-family: var(--font-typewriter), var(--font-typewriter-fallback);
+body,
+.rally-theme {
+  font-family: var(--font-typewriter) !important;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Elementi testuali (non tocca griglie/immagini) */
+/* Elementi testuali */
 p,
 li,
 a,
@@ -47,28 +46,28 @@ code,
 pre,
 kbd,
 samp {
-  font-family: var(--font-typewriter), var(--font-typewriter-fallback);
+  font-family: var(--font-typewriter) !important;
 }
 
-/* Pesi e micro-tuning */
 h1,
 h2,
-h3 {
-  font-weight: 700;
-} /* titoli più “presenti” */
+h3,
 h4,
 h5,
 h6 {
   font-weight: 700;
 }
+
 p,
 li {
   letter-spacing: 0.1px;
 }
 
-/* Mantieni la gallery stabile: niente line-height ereditato nelle card */
+/* Evita che la gallery si deformi */
 .gd-card,
 .gd-grid,
-.gd-skeleton {
+.gd-skeleton,
+.gd-masonry,
+.gd-masonry-item {
   line-height: 0;
 }
