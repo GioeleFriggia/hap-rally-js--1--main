@@ -1,41 +1,59 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import "./Hero.css";
 
 export default function Hero() {
-  const titleText = "Team Pinna Corse";
-  const subtitleText = "Passione, precisione e potenza.";
+  const TITLE = "Team Pinna Corse";
+  const SUBTITLE = "Passione, precisione e potenza.";
 
-  const [displayedTitle, setDisplayedTitle] = useState("");
-  const [displayedSubtitle, setDisplayedSubtitle] = useState("");
-  const [showCursor, setShowCursor] = useState(true);
+  const TITLE_MS = 110;
+  const SUBTITLE_MS = 65;
+  const AFTER_TITLE_DELAY = 350;
+
+  const [titleOut, setTitleOut] = useState("");
+  const [subOut, setSubOut] = useState("");
+  const [typing, setTyping] = useState(true);
+
+  const rafRef = useRef(null);
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
-    let i = 0;
-    const titleInterval = setInterval(() => {
-      setDisplayedTitle(titleText.slice(0, i + 1));
-      i++;
-      if (i === titleText.length) {
-        clearInterval(titleInterval);
-        // Dopo che finisce il titolo, aspetta un attimo e inizia il sottotitolo
-        setTimeout(() => typeSubtitle(), 500);
-      }
-    }, 120);
+    const typeWithRAF = (text, setter, perCharMs, onDone) => {
+      let i = 0;
+      let last = performance.now();
 
-    const typeSubtitle = () => {
-      let j = 0;
-      const subtitleInterval = setInterval(() => {
-        setDisplayedSubtitle(subtitleText.slice(0, j + 1));
-        j++;
-        if (j === subtitleText.length) {
-          clearInterval(subtitleInterval);
-          setShowCursor(false); // nasconde il cursore al termine di tutto
+      const step = (now) => {
+        if (now - last >= perCharMs) {
+          last = now;
+          i++;
+          setter(text.slice(0, i));
         }
-      }, 60);
+        if (i < text.length) {
+          rafRef.current = requestAnimationFrame(step);
+        } else {
+          onDone && onDone();
+        }
+      };
+
+      setter(text.slice(0, 2));
+      i = 2;
+      last = performance.now();
+      rafRef.current = requestAnimationFrame(step);
     };
 
-    return () => clearInterval(titleInterval);
+    typeWithRAF(TITLE, setTitleOut, TITLE_MS, () => {
+      timeoutRef.current = setTimeout(() => {
+        typeWithRAF(SUBTITLE, setSubOut, SUBTITLE_MS, () => {
+          setTyping(false);
+        });
+      }, AFTER_TITLE_DELAY);
+    });
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, []);
 
   return (
@@ -50,15 +68,21 @@ export default function Hero() {
           unoptimized
           className="hero__img"
         />
+        <div className="hero__darken" />
       </div>
 
       <div className="hero__overlay">
         <div className="hero__content">
           <h1 className="hero__title">
-            {displayedTitle}
-            {showCursor && <span className="cursor">|</span>}
+            {titleOut}
+            {typing && (
+              <span className="cursor" aria-hidden="true">
+                |
+              </span>
+            )}
           </h1>
-          <p className="hero__subtitle">{displayedSubtitle}</p>
+
+          <p className="hero__subtitle">{subOut}</p>
         </div>
       </div>
     </section>

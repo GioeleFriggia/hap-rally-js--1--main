@@ -1,12 +1,7 @@
 "use client";
 /**
- * GalleryDrive.jsx — Masonry mobile-first
- * - Album da Google Drive
- * - Tabs album (scrollabili) con badge conteggio
- * - Vista unica: Masonry fluido (senza toggle)
- * - Blur-up, hover soft, Lightbox invariata
+ * GalleryDrive.jsx — Album + Masonry (mobile-first)
  */
-
 import { useEffect, useMemo, useState } from "react";
 import "./GalleryDrive.css";
 import Lightbox from "@/components/Lightbox";
@@ -34,7 +29,6 @@ async function gdriveList(params) {
     fields: "files(id,name,mimeType,parents,thumbnailLink)",
     ...params,
   }).forEach(([k, v]) => u.searchParams.set(k, v));
-
   const res = await fetch(u.toString());
   if (!res.ok) {
     const txt = await res.text();
@@ -92,14 +86,10 @@ async function listImagesInRoot(rootId) {
 }
 
 export default function GalleryDrive() {
-  const [albums, setAlbums] = useState([]); // [{id,name,photos:[]}]
+  const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
-
-  // Tab attivo (album scelto). "all" = tutte le foto (root + sottocartelle)
   const [activeId, setActiveId] = useState("all");
-
-  // Lightbox
   const [lightbox, setLightbox] = useState({
     open: false,
     albumIdx: 0,
@@ -116,13 +106,11 @@ export default function GalleryDrive() {
       setLoading(false);
       return;
     }
-
     let stop = false;
     (async () => {
       try {
         setLoading(true);
         setErr("");
-
         const [rootImages, folders] = await Promise.all([
           listImagesInRoot(ROOT_ID),
           listAlbums(ROOT_ID),
@@ -136,14 +124,12 @@ export default function GalleryDrive() {
             photos: rootImages,
           });
         }
-
         const perFolder = await Promise.all(
           folders.map(async (f) => {
             const photos = await listImagesIn(f.id);
             return { id: f.id, name: f.name, photos };
           })
         );
-
         albumList.push(...perFolder);
         if (!stop) setAlbums(albumList);
       } catch (e) {
@@ -152,24 +138,20 @@ export default function GalleryDrive() {
         if (!stop) setLoading(false);
       }
     })();
-
     return () => {
       stop = true;
     };
   }, [apiReady]);
 
-  // Foto da mostrare (mobile-first)
   const photosToShow = useMemo(() => {
     if (!albums.length) return [];
-    if (activeId === "all") {
-      return albums.flatMap((a) => a.photos);
-    }
+    if (activeId === "all") return albums.flatMap((a) => a.photos);
     const found = albums.find((a) => a.id === activeId);
     return found ? found.photos : [];
   }, [albums, activeId]);
 
-  const lbAlbums = useMemo(() => {
-    return [
+  const lbAlbums = useMemo(
+    () => [
       {
         id: activeId,
         name:
@@ -178,17 +160,20 @@ export default function GalleryDrive() {
             : albums.find((a) => a.id === activeId)?.name || "",
         photos: photosToShow,
       },
-    ];
-  }, [albums, activeId, photosToShow]);
+    ],
+    [albums, activeId, photosToShow]
+  );
 
   const openLightbox = (idx) =>
     setLightbox({ open: true, albumIdx: 0, photoIdx: idx });
+  const totalCount = albums.reduce((n, a) => n + a.photos.length, 0);
 
   return (
     <section className="gd-wrap">
-      <h1 className="gd-title">GALLERY</h1>
+      {/* Titolo principale */}
+      <h1 className="gd-title">Galleria</h1>
 
-      {/* Tabs album — mobile-first, scrollabile */}
+      {/* Sezioni / Album */}
       <div className="gd-controls">
         <div className="gd-tabs" role="tablist" aria-label="Album">
           <button
@@ -198,10 +183,8 @@ export default function GalleryDrive() {
             onClick={() => setActiveId("all")}
             title="Mostra tutte le foto"
           >
-            Tutte
-            <span className="gd-badge">
-              {albums.reduce((n, a) => n + a.photos.length, 0)}
-            </span>
+            <span className="gd-tab__label">Tutte</span>
+            <span className="gd-badge">{totalCount}</span>
           </button>
 
           {albums.map((al) => (
@@ -213,7 +196,7 @@ export default function GalleryDrive() {
               onClick={() => setActiveId(al.id)}
               title={al.name}
             >
-              {al.name}
+              <span className="gd-tab__label">{al.name}</span>
               <span className="gd-badge">{al.photos.length}</span>
             </button>
           ))}
@@ -230,7 +213,7 @@ export default function GalleryDrive() {
       )}
       {!!err && <p className="gd-error">Errore: {err}</p>}
 
-      {/* Masonry mobile-first (senza toggle) */}
+      {/* Masonry */}
       {!loading && !err && photosToShow.length > 0 && (
         <div className="gd-masonry">
           {photosToShow.map((ph, idx) => (

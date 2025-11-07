@@ -1,3 +1,4 @@
+/* ====== TUA NAVBAR ORIGINALE ====== */
 .navbar {
   width: 100%;
   background: rgba(0, 0, 0, 0.9);
@@ -22,26 +23,6 @@
 }
 
 /* LOGO */
-/* .navbar__logo-wrapper {
-  background: radial-gradient(
-    circle at center,
-    rgb(163, 241, 6) 0%,
-    rgb(163, 241, 6)
-  ); */
-/* padding: 1px;
-  border-radius: 20px; */
-/* display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-  transition: all 0.25s ease; */
-/* } */
-
-/* .navbar__logo-wrapper:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 18px rgba(255, 0, 0, 0.8);
-} */
-
 .navbar__logo-img {
   height: 100px;
   width: 190px;
@@ -85,17 +66,89 @@
   color: #ff0000;
 }
 
+/* ====== AGGIUNTE HAMBURGER (FIRST-MOBILE) ====== */
+
+/* Bottone hamburger: nascosto su desktop */
+.nav-toggle {
+  display: none;
+  width: 42px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid #ffffff33;
+  border-radius: 10px;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.nav-toggle.is-open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.nav-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.is-open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
 /* Mobile */
 @media (max-width: 768px) {
-  .navbar__menu {
-    gap: 16px;
-  }
-
+  /* logo più compatto come avevi */
   .navbar__logo-img {
     height: 45px;
+    width: auto;
   }
-
   .navbar__logo-wrapper {
     padding: 4px;
   }
+
+  /* mostra il bottone */
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  /* il menu diventa un pannello a tutta larghezza, impilato */
+  .navbar__menu {
+    position: absolute;
+    top: 100%; /* subito sotto la barra */
+    left: 0;
+    right: 0;
+    display: grid; /* impilato */
+    gap: 10px;
+    margin: 0;
+    padding: 12px 16px 16px;
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom: 2px solid rgb(163, 241, 6);
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.35);
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+    z-index: 99; /* sopra i contenuti */
+  }
+
+  /* quando la navbar ha la classe is-open (stato React) mostra il menu */
+  .navbar.is-open .navbar__menu {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* link più comodi al tocco */
+  .navbar__menu a {
+    padding: 10px 8px;
+    display: block;
+    text-align: left;
+  }
 }
+
+/* Desktop: nulla cambia per il menu, il bottone resta nascosto */

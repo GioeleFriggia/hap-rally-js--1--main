@@ -37,7 +37,15 @@
   filter: brightness(1.1);
 }
 
-/* Overlay */
+/* 🔸 Overlay semitrasparente per migliorare la leggibilità del testo */
+.hero__darken {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+/* Overlay del testo */
 .hero__overlay {
   position: relative;
   z-index: 2;
@@ -50,6 +58,13 @@
   color: #a3f106;
 }
 
+/* Contenuto */
+.hero__content {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
 /* ===== TITOLO ===== */
 .hero__title {
   font-size: clamp(2.2rem, 5vw, 4rem);
@@ -60,9 +75,10 @@
   font-family: "Oswald", "Inter", sans-serif;
   position: relative;
   display: inline-block;
+  line-height: 1.1;
 }
 
-/* Cursore visibile solo durante la digitazione */
+/* Cursore */
 .cursor {
   display: inline-block;
   width: 10px;
@@ -83,22 +99,28 @@
   }
 }
 
-/* ===== SOTTOTITOLO (anche lui appare digitato) ===== */
+/* ===== SOTTOTITOLO ===== */
 .hero__subtitle {
   font-size: clamp(1rem, 2vw, 1.3rem);
   opacity: 0.9;
-  margin-top: 10px;
+  margin: 0;
   color: #d7ffd1;
   font-family: "Inter", sans-serif;
   transition: opacity 0.4s ease;
+  line-height: 1.25;
+  max-width: 800px;
 }
 
-/* Mobile */
+/* ===== MOBILE FIRST: immagine leggermente più piccola ===== */
 @media (max-width: 768px) {
   .hero {
-    height: calc(100dvh - var(--nav-h));
+    height: calc(
+      85dvh - var(--nav-h)
+    ); /* ↓ ridotto dal 100dvh per rimpicciolire */
   }
+
   .hero__img {
-    object-position: 50% 50%;
+    object-position: 50% 55%; /* più centrata in verticale */
+    transform: scale(0.9); /* ↓ leggermente ridotta per mostrare più contesto */
   }
 }

@@ -24,7 +24,13 @@ const news = [
 
 export default function NewsGrid() {
   return (
-    <section id="news" className="section">
+    <section
+      id="news"
+      className="section"
+      /* ↓ SOLO SPACING: avvicina la sezione al blocco precedente,
+         senza toccare colori o layout definiti nel CSS */
+      style={{ marginTop: "-30px", paddingTop: "40px" }}
+    >
       <div className="container">
         <h2 className="title">Scopri tutte le nostre news</h2>
         <div className="news">
