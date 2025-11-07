@@ -1,6 +1,5 @@
-/* ===== HERO BELLA COME PRIMA MA SOTTO LA NAVBAR ===== */
+/* ===== HERO CON EFFETTO MACCHINA DA SCRIVERE ===== */
 
-/* Altezza navbar */
 :root {
   --nav-h: 56px;
 }
@@ -10,105 +9,96 @@
   }
 }
 
-/* Container */
 .hero {
   position: relative;
   width: 100%;
-  min-height: 90dvh;
+  height: calc(100vh - var(--nav-h));
   overflow: hidden;
-  background-color: #000;
-  margin-top: var(
-    --nav-h
-  ); /* <— ecco il trucco: spinge la hero sotto la navbar */
+  margin-top: var(--nav-h);
+  background: #000;
 }
 
-/* Immagine di sfondo */
 .hero__media {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .hero__img {
   object-fit: cover;
-  object-position: 50% 65%; /* focus leggermente basso (perfetto per l’auto) */
-  transition: transform 0.5s ease, object-position 0.3s ease;
+  object-position: 50% 60%;
+  filter: brightness(1.05) contrast(1.05);
+  transition: transform 0.6s ease, filter 0.3s ease;
 }
 
-/* Overlay e testo */
+.hero:hover .hero__img {
+  transform: scale(1.04);
+  filter: brightness(1.1);
+}
+
+/* Overlay */
 .hero__overlay {
   position: relative;
   z-index: 2;
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 12vh;
-}
-
-/* Gradiente sopra per leggibilità del testo */
-.hero__overlay::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
-  z-index: -1;
-}
-
-/* Contenuto */
-.hero__content {
+  align-items: flex-end;
+  padding-bottom: 10vh;
   text-align: center;
-  color: #fff;
-  padding: 1rem;
-  width: 92%;
-  max-width: 1000px;
-  margin: 0 auto;
+  color: #a3f106;
 }
 
+/* ===== TITOLO ===== */
 .hero__title {
-  margin: 0 0 0.5rem 0;
+  font-size: clamp(2.2rem, 5vw, 4rem);
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 3px;
+  margin: 0;
+  font-family: "Oswald", "Inter", sans-serif;
+  position: relative;
+  display: inline-block;
 }
 
+/* Cursore visibile solo durante la digitazione */
+.cursor {
+  display: inline-block;
+  width: 10px;
+  margin-left: 4px;
+  background: #a3f106;
+  animation: blink 0.9s infinite;
+}
+
+@keyframes blink {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+/* ===== SOTTOTITOLO (anche lui appare digitato) ===== */
 .hero__subtitle {
   font-size: clamp(1rem, 2vw, 1.3rem);
-  opacity: 0.95;
+  opacity: 0.9;
+  margin-top: 10px;
+  color: #d7ffd1;
+  font-family: "Inter", sans-serif;
+  transition: opacity 0.4s ease;
 }
-
-/* Hover leggero */
-.hero:hover .hero__img {
-  transform: scale(1.03);
-}
-
-/* === RESPONSIVE === */
 
 /* Mobile */
 @media (max-width: 768px) {
   .hero {
-    min-height: 100dvh;
+    height: calc(100dvh - var(--nav-h));
   }
-
   .hero__img {
     object-position: 50% 50%;
-  }
-
-  .hero__overlay {
-    padding-top: 20vh;
-  }
-}
-
-/* Tablet */
-@media (min-width: 769px) and (max-width: 1200px) {
-  .hero__img {
-    object-position: 50% 60%;
-  }
-}
-
-/* Desktop widescreen */
-@media (min-width: 1201px) {
-  .hero__img {
-    object-position: 50% 70%;
   }
 }

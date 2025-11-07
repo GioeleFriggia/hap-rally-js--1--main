@@ -1,13 +1,22 @@
 "use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import "./TeamStrip.css";
 
 const team = [
-  { name: "Marco Pinna", role: "Pilota", img: "/foto/Pilotapng.png" },
   { name: "Gaetano Pinna", role: "Navigatore", img: "/foto/Navigatore.png" },
+  { name: "Marco Pinna", role: "Pilota", img: "/foto/Pilotapng.png" },
 ];
 
 export default function TeamStrip() {
+  const [bannerVisible, setBannerVisible] = useState(false);
+
+  useEffect(() => {
+    // anima il banner alla prima render (oppure possiamo usare IntersectionObserver)
+    const t = requestAnimationFrame(() => setBannerVisible(true));
+    return () => cancelAnimationFrame(t);
+  }, []);
+
   return (
     <section id="team" className="section team">
       <div className="container">
@@ -17,6 +26,19 @@ export default function TeamStrip() {
             Due uomini, una sola missione: tagliare il traguardo più veloci di
             tutti.
           </p>
+        </div>
+
+        {/* Banner subito dopo h2 */}
+        <div className={`team__banner ${bannerVisible ? "is-visible" : ""}`}>
+          <Image
+            src="/foto/Homepage2.png"
+            alt="Team Pinna Corse - action shot"
+            fill
+            className="team__bannerImg"
+            sizes="(min-width: 1200px) 1100px, (min-width: 900px) 88vw, 100vw"
+            priority={false}
+          />
+          <div className="team__bannerShade" />
         </div>
 
         <div className="team__grid team__grid--two">
@@ -29,7 +51,6 @@ export default function TeamStrip() {
                   fill
                   className="team__imgEl"
                   sizes="(min-width: 900px) 45vw, 100vw"
-                  // tengo il volto un filo più alto sul navigatore
                   style={{ objectPosition: i === 1 ? "center 40%" : "center" }}
                   priority={i === 0}
                 />
