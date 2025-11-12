@@ -1,0 +1,124 @@
+/* ===== TEAM ABOUT (mobile-first, foto alternate + reveal) ===== */
+.t-about {
+  position: relative;
+  padding: calc(var(--nav-h) + clamp(14px, 2.5vw, 28px)) 16px
+    clamp(28px, 6vw, 56px);
+  background: #0a0a0a;
+  color: #f2f2f2;
+  border-top: 1px solid #ffffff12;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.t-about__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---------- Head ---------- */
+.t-about__head {
+  margin-bottom: 24px;
+  text-align: left;
+}
+.t-about__title {
+  margin: 0 0 6px;
+  font-size: clamp(28px, 8vw, 54px);
+  font-weight: 900;
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  background: linear-gradient(90deg, #ffe600, #ff8800);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.t-about__subtitle {
+  margin: 0;
+  color: #d6d6d6;
+  max-width: 70ch;
+}
+
+/* ---------- Righe base ---------- */
+.t-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px 20px;
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+
+/* ---------- Testo ---------- */
+.t-text {
+  display: grid;
+  gap: 14px;
+  font-size: clamp(15px, 2.9vw, 18px);
+  line-height: 1.75;
+  color: #e8e8e8;
+  max-width: 70ch;
+  justify-self: center;
+}
+
+/* ---------- Foto ---------- */
+.t-media {
+  margin: 0;
+}
+.t-imgwrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid #ffffff14;
+}
+.t-img {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+.t-imgwrap:hover .t-img {
+  transform: scale(1.03);
+}
+.t-cap {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #cfcfcf;
+  text-align: center;
+  opacity: 0.9;
+}
+
+/* ========== Desktop ≥900px ========== */
+@media (min-width: 900px) {
+  .t-row {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: clamp(24px, 4vw, 36px);
+  }
+
+  /* Riga alternata: inverte le colonne */
+  .t-row--alt {
+    grid-template-columns: 0.95fr 1.05fr;
+  }
+}
+
+/* ---------- Ultra-wide limit ---------- */
+@media (min-width: 1400px) {
+  .t-text {
+    max-width: 68ch;
+  }
+}
+
+/* ===== Reveal on scroll ===== */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal--delay-sm {
+    transition-delay: 0.08s;
+  }
+}
