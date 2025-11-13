@@ -1,0 +1,723 @@
+/* ===== SEZIONE NEWS – TONALE RALLY (LIME + NERO) ===== */
+
+.news-timeline {
+  min-height: 100vh;
+  padding: 80px 16px 80px;
+  background: radial-gradient(
+    circle at top,
+    #101010 0%,
+    #030303 55%,
+    #000 100%
+  );
+  color: #f5f5f5;
+  font-family: system-ui, "Poppins", sans-serif;
+}
+
+.news-timeline__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ===== HEADER ===== */
+
+.news-timeline__head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.news-timeline__eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #c6ff00;
+  margin-bottom: 6px;
+}
+
+.news-timeline__title {
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.news-timeline__subtitle {
+  font-size: 14px;
+  color: #d0d0d0;
+  line-height: 1.7;
+}
+
+/* ===== COLONNA TIMELINE ===== */
+
+.timeline-list {
+  position: relative;
+  margin-top: 24px;
+  padding-left: 38px;
+  /* spazio per linea e chip */
+}
+
+.timeline-year-block {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.timeline-year-block::before {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 42px;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #c6ff00, #ffe600);
+  opacity: 0.95;
+  border-radius: 999px;
+}
+
+/* ===== CHIP ANNO (SEASON 2025) ===== */
+
+.timeline-year-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 22px;
+  margin-left: -22px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(198, 255, 0, 1);
+  background: radial-gradient(circle at top, #202820, #050805);
+  color: #c6ff00;
+  box-shadow: 0 0 18px rgba(198, 255, 0, 0.6);
+  z-index: 2;
+}
+
+.timeline-year-chip__label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.timeline-year-chip__year {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* ===== CARD EVENTO ===== */
+
+.event-card {
+  position: relative;
+  right: -40px;
+  margin-bottom: 24px;
+}
+
+.event-card__rail {
+  position: absolute;
+
+  left: -6px;
+  top: 24px;
+  width: 26px;
+}
+
+.event-card__dot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #050505;
+  border: 3px solid #c6ff00;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.7), 0 0 18px rgba(198, 255, 0, 0.7);
+}
+
+.event-card__body {
+  margin-left: 12px;
+
+  display: flex;
+  gap: 18px;
+  background: radial-gradient(circle at top left, #222, #131313);
+  border-radius: 18px;
+  padding: 14px 18px;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.event-card__body:hover {
+  transform: translateY(-3px);
+  border-color: rgba(198, 255, 0, 0.7);
+}
+
+/* IMMAGINE CARD */
+
+.event-card__image-wrap {
+  position: relative;
+  flex: 0 0 110px;
+  height: 110px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+.event-card__image {
+  object-fit: cover;
+}
+
+/* TESTI CARD */
+
+.event-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.event-card__badge {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #c6ff00, #ffe600);
+  color: #111;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.event-card__title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.event-card__desc {
+  font-size: 13px;
+  color: #e4e4e4;
+}
+
+.event-card__extra {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #b8b8b8;
+}
+
+/* DATA */
+
+.event-card__date {
+  flex: 0 0 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px dashed rgba(255, 255, 255, 0.18);
+  padding-left: 12px;
+}
+
+.event-card__month {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c6ff00;
+}
+
+.event-card__day {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.event-card__year-small {
+  font-size: 11px;
+  color: #d0d0d0;
+}
+
+/* ===== RESPONSIVE CARD ===== */
+
+@media (max-width: 700px) {
+  .timeline-list {
+    padding-left: 28px;
+  }
+
+  .event-card__body {
+    flex-direction: column;
+  }
+
+  .event-card__image-wrap {
+    width: 100%;
+    height: 180px;
+  }
+
+  .event-card__date {
+    flex-direction: row;
+    gap: 6px;
+    border-left: none;
+    border-top: 1px dashed rgba(255, 255, 255, 0.18);
+    padding-top: 8px;
+    margin-top: 8px;
+  }
+}
+
+/* ========================================================= */
+/* ===== MODAL / LIGHTBOX — VERSIONE COMPATTA FINALE ===== */
+/* ========================================================= */
+
+.timeline__modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 90;
+}
+
+/* MODALE COMPATTA */
+.timeline__modal {
+  position: relative;
+  width: min(700px, 95%);
+  max-height: calc(100vh - 140px);
+  margin-top: 90px; /* sotto navbar */
+  background: #060606;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* LOCANDINA PICCOLA */
+.timeline__modal-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  background: #000;
+  cursor: zoom-out;
+}
+
+.timeline__modal-img {
+  object-fit: contain;
+}
+
+/* CONTENUTO MODALE */
+.timeline__modal-body {
+  padding: 18px 20px 22px;
+  overflow-y: auto;
+  max-height: 280px;
+}
+
+/* X CHIUSURA */
+.timeline__modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.timeline__stages {
+  list-style: disc;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #ddd;
+}
+
+.timeline__stages li + li {
+  margin-top: 4px;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .timeline__modal {
+    width: 100%;
+    margin-top: 70px;
+    max-height: calc(100vh - 100px);
+    border-radius: 20px 20px 0 0;
+  }
+
+  .timeline__modal-img-wrap {
+    height: 280px;
+  }
+
+  .timeline__modal-body {
+    max-height: 260px;
+  }
+}
+/* ===== SEZIONE NEWS – TONALE RALLY (LIME + NERO) ===== */
+
+.news-timeline {
+  min-height: 100vh;
+  padding: 80px 16px 80px;
+  background: radial-gradient(
+    circle at top,
+    #101010 0%,
+    #030303 55%,
+    #000 100%
+  );
+  color: #f5f5f5;
+  font-family: system-ui, "Poppins", sans-serif;
+}
+
+.news-timeline__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ===== HEADER ===== */
+
+.news-timeline__head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.news-timeline__eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #c6ff00;
+  margin-bottom: 6px;
+}
+
+.news-timeline__title {
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.news-timeline__subtitle {
+  font-size: 14px;
+  color: #d0d0d0;
+  line-height: 1.7;
+}
+
+/* ===== COLONNA TIMELINE ===== */
+
+.timeline-list {
+  position: relative;
+  margin-top: 24px;
+  padding-left: 38px; /* spazio per linea e chip */
+}
+
+.timeline-year-block {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+/* ramo verticale che parte sotto il chip */
+.timeline-year-block::before {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 42px;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #c6ff00, #ffe600);
+  opacity: 0.95;
+  border-radius: 999px;
+}
+
+/* ===== CHIP ANNO (SEASON 2025) ===== */
+
+.timeline-year-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 22px;
+  margin-left: -22px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(198, 255, 0, 1);
+  background: radial-gradient(circle at top, #202820, #050805);
+  color: #c6ff00;
+  box-shadow: 0 0 18px rgba(198, 255, 0, 0.6);
+  z-index: 2;
+}
+
+.timeline-year-chip__label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.timeline-year-chip__year {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* ===== CARD EVENTO ===== */
+
+.event-card {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.event-card__rail {
+  position: absolute;
+  left: -6px;
+  top: 24px;
+  width: 26px;
+}
+
+.event-card__dot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #050505;
+  border: 3px solid #c6ff00;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.7), 0 0 18px rgba(198, 255, 0, 0.7);
+}
+
+.event-card__body {
+  margin-left: 12px;
+  display: flex;
+  gap: 18px;
+  background: radial-gradient(circle at top left, #222, #131313);
+  border-radius: 18px;
+  padding: 14px 18px;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.event-card__body:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.9);
+  border-color: rgba(198, 255, 0, 0.7);
+}
+
+/* IMMAGINE CARD */
+
+.event-card__image-wrap {
+  position: relative;
+  flex: 0 0 110px;
+  height: 110px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+.event-card__image {
+  object-fit: cover;
+}
+
+/* TESTI CARD */
+
+.event-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.event-card__badge {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #c6ff00, #ffe600);
+  color: #111;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.event-card__title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.event-card__desc {
+  font-size: 13px;
+  color: #e4e4e4;
+}
+
+.event-card__extra {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #b8b8b8;
+}
+
+/* DATA */
+
+.event-card__date {
+  flex: 0 0 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px dashed rgba(255, 255, 255, 0.18);
+  padding-left: 12px;
+}
+
+.event-card__month {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c6ff00;
+}
+
+.event-card__day {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.event-card__year-small {
+  font-size: 11px;
+  color: #d0d0d0;
+}
+
+/* ===== RESPONSIVE CARD ===== */
+
+@media (max-width: 700px) {
+  .timeline-list {
+    padding-left: 28px;
+  }
+
+  .timeline-year-chip {
+    margin-left: -18px;
+  }
+
+  .event-card__body {
+    flex-direction: column;
+  }
+
+  .event-card__image-wrap {
+    width: 100%;
+    height: 180px;
+  }
+
+  .event-card__date {
+    flex-direction: row;
+    gap: 6px;
+    border-left: none;
+    border-top: 1px dashed rgba(255, 255, 255, 0.18);
+    padding-top: 8px;
+    margin-top: 8px;
+  }
+
+  .event-card__day {
+    font-size: 20px;
+  }
+}
+
+/* ========================================================= */
+/* ===== MODAL / LIGHTBOX — VERSIONE COMPATTA E BASSA ===== */
+/* ========================================================= */
+
+.timeline__modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 90;
+}
+
+/* MODALE PIÙ BASSA (LONTANA DALLA NAVBAR) */
+.timeline__modal {
+  position: relative;
+  width: min(700px, 95%);
+  max-height: calc(100vh - 220px); /* più bassa */
+  margin-top: 160px; /* sposta la card ancora più in basso */
+  background: #060606;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* LOCANDINA COMPATTA */
+.timeline__modal-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: #000;
+  cursor: zoom-out;
+}
+
+.timeline__modal-img {
+  object-fit: contain;
+}
+
+/* CONTENUTO MODALE */
+.timeline__modal-body {
+  padding: 18px 20px 22px;
+  overflow-y: auto;
+  max-height: 240px;
+}
+
+/* X CHIUSURA */
+.timeline__modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* badge nel modal (riusa stile card) */
+.event-card__badge--modal {
+  margin-bottom: 8px;
+}
+
+.event-card__date-text {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #c6ff00;
+  margin-bottom: 4px;
+}
+
+.timeline__stages {
+  list-style: disc;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #ddd;
+}
+
+.timeline__stages li + li {
+  margin-top: 4px;
+}
+
+/* ===== MOBILE MODAL ===== */
+
+@media (max-width: 700px) {
+  .timeline__modal {
+    width: 100%;
+    margin-top: 90px; /* sotto navbar mobile */
+    max-height: calc(100vh - 120px);
+    border-radius: 20px 20px 0 0;
+  }
+
+  .timeline__modal-img-wrap {
+    height: 280px;
+  }
+
+  .timeline__modal-body {
+    max-height: 260px;
+  }
+}

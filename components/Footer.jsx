@@ -1,36 +1,71 @@
+"use client";
+import Link from "next/link";
 import "./Footer.css";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
   return (
-    <footer id="contatti" className="section footer">
-      <div className="container footer__grid">
-        <div>
-          <h4 className="footer__title">Contatti</h4>
-          <ul className="footer__list">
-            <li>Via xxxxxxxx (SS)</li>
-            <li>Mobile: +xxxxxxx</li>
-            <li>Email: xxxxx@gmail.com</li>
-          </ul>
+    <footer className="footer">
+      <div className="footer__container">
+        <div className="footer__brand">
+          <h3 className="footer__title">HAP Rally Team</h3>
+          <p className="footer__tag">Passione, precisione e potenza.</p>
         </div>
-        <div>
-          <h4 className="footer__title">Canali Social</h4>
-          <p className="footer__text">
-            Instagram • YouTube • Facebook . TikTok
-          </p>
-        </div>
-        <div>
-          <h4 className="footer__title">Newsletter</h4>
-          <p className="footer__text">
-            Tieniti sempre aggiornato. Iscriviti alla nostra newsletter.
-          </p>
-          <form className="footer__form">
-            <input type="email" placeholder="Email" className="footer__input" />
-            <button className="footer__btn">Iscriviti</button>
-          </form>
-        </div>
+
+        <nav className="footer__links">
+          <div>
+            <h4>Menu</h4>
+            <ul>
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href="/team">Team</Link>
+              </li>
+              <li>
+                <Link href="/gallery">Gallery</Link>
+              </li>
+              <li>
+                <Link href="/news">News</Link>
+              </li>
+              <li>
+                <Link href="/partners">Partners</Link>
+              </li>
+              <li>
+                <Link href="/contatti">Contatti</Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Contatti</h4>
+            <ul>
+              <li>
+                <a href="mailto:info@haprallyteam.example">
+                  info@haprallyteam.example
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a href="https://facebook.com" target="_blank" rel="noreferrer">
+                  Facebook
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </div>
-      <div className="container footer__copy">
-        ©{new Date().getFullYear()} Gioele Friggia
+
+      <div className="footer__bottom">
+        <p>© {year} HAP Rally Team — All rights reserved.</p>
+        <p className="footer__credit">Website by Gioele Friggia</p>
       </div>
     </footer>
   );

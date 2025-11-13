@@ -172,3 +172,51 @@ main {
   outline: 2px solid var(--brand-1);
   outline-offset: 2px;
 }
+/* ====== GLOBAL RESET MINIMO ====== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ====== NAVBAR HEIGHT VARS (desktop/mobile) ====== */
+:root {
+  --nav-h: 64px;
+} /* desktop default */
+@media (max-width: 900px) {
+  :root {
+    --nav-h: 56px;
+  } /* mobile/tablet */
+}
+
+/* Quando la navbar è fixed, sposta TUTTO il contenuto sotto */
+html {
+  scroll-padding-top: var(--nav-h);
+} /* per i link con #ancora */
+body.rally-theme {
+  padding-top: var(--nav-h);
+}
+
+/* Evita “saltelli” quando appaiono/dispaiono scrollbar */
+html {
+  overflow-y: scroll;
+}
+
+/* Tema base (tuo stile già esistente) */
+body.rally-theme {
+  background: #0a0a0a;
+  color: #f2f2f2;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* opzionale: garantisce che il main non finisca nascosto da footer piccoli */
+main {
+  min-height: calc(100dvh - var(--nav-h));
+}

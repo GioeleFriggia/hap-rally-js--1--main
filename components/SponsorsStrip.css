@@ -1,0 +1,64 @@
+/* ===== SPONSOR STRIP ===== */
+.sponsors {
+  position: relative;
+  width: 100%;
+  background: #0d0d0d;
+  border-top: 1px solid #ffffff14;
+  border-bottom: 1px solid #ffffff14;
+  overflow: hidden;
+}
+
+.sponsors__inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 18px 12px;
+}
+
+.sponsors__track {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  animation: sponsors-marquee 22s linear infinite;
+  will-change: transform;
+}
+.sponsors:hover .sponsors__track {
+  animation-play-state: paused;
+}
+
+@keyframes sponsors-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.sponsor {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  filter: saturate(0.9);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.sponsor:hover {
+  transform: scale(1.04);
+  filter: saturate(1.1);
+}
+
+.sponsor__imgwrap {
+  position: relative;
+  width: clamp(160px, 14vw, 260px);
+  height: clamp(70px, 6.5vw, 120px);
+  border-radius: 14px;
+  background: #111;
+  border: 1px solid #ffffff12;
+  overflow: hidden;
+}
+
+.sponsor__img {
+  object-fit: contain;
+  object-position: center;
+  /* niente colori forzati: i loghi mantengono i propri */
+}
