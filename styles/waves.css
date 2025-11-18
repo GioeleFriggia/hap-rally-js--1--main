@@ -1,0 +1,63 @@
+/* ===== THEME: RALLY SPEED LINES (globale) ===== */
+:root {
+  --asphalt: #0f0f0f;
+}
+
+/* Base scura */
+html,
+body {
+  background: var(--asphalt);
+}
+
+/* Applica le linee e la grana al BODY come overlay fissato */
+.rally-theme {
+  position: relative;
+  min-height: 100%;
+}
+
+/* Grana tipo asfalto */
+.rally-theme::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 18px 18px;
+  opacity: 0.28;
+}
+
+/* Speed lines animate (sopra la grana) */
+.rally-theme::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: linear-gradient(
+      120deg,
+      rgba(255, 40, 40, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(300deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px;
+  animation: rally-move 10s linear infinite;
+}
+
+@keyframes rally-move {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 160px 160px, -160px 160px;
+  }
+}
+
+/* 🔥 Disattiva i vecchi PALLINI delle sezioni */
+.bg-grid {
+  background-image: none !important;
+  background-color: transparent !important;
+}

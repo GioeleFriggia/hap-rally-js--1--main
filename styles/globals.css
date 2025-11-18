@@ -1,0 +1,222 @@
+/* ===== GLOBALI: Mobile-first, tema scuro, utility ===== */
+
+/* Reset leggero + sistemazioni */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Tema base */
+:root {
+  --asphalt: #0f0f0f;
+  --text: #f3f3f3;
+  --text-dim: #cfcfcf;
+  --brand-1: #ffe600;
+  --brand-2: #ff8800;
+
+  /* tipografia fluida */
+  --fs-hero: clamp(28px, 6vw, 64px);
+  --fs-h2: clamp(20px, 3.5vw, 36px);
+  --fs-body: clamp(14px, 2.5vw, 16px);
+
+  /* navbar height (mobile/desk) */
+  --nav-h: 56px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --nav-h: 64px;
+  }
+}
+
+/* Base scura + texture leggera */
+html,
+body {
+  height: 100%;
+  background: var(--asphalt);
+  color: var(--text);
+}
+body.rally-theme {
+  position: relative;
+  min-height: 100%;
+}
+body.rally-theme::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 18px 18px;
+  opacity: 0.28;
+}
+body.rally-theme::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 1px
+  );
+  background-size: 10px 10px;
+  opacity: 0.15;
+  mix-blend-mode: screen;
+}
+
+/* Contenitore fluido */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: 16px;
+  margin-inline: auto;
+}
+
+/* Spaziatura sezioni */
+.section {
+  padding: 48px 0;
+}
+@media (min-width: 768px) {
+  .section {
+    padding: 64px 0;
+  }
+}
+
+/* Titoli */
+h1,
+.h1 {
+  font-size: var(--fs-hero);
+  line-height: 1.05;
+  margin: 0 0 12px;
+}
+h2,
+.h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.15;
+  margin: 0 0 12px;
+}
+p {
+  font-size: var(--fs-body);
+  color: var(--text);
+}
+
+/* Link */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Utility grid generica */
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 600px) {
+  .grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 900px) {
+  .grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Evita che overlay coprano la navbar */
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pulsanti base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid #ffffff1a;
+  background: #1a1a1a;
+  color: #fff;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--brand-1);
+  outline-offset: 2px;
+}
+/* ====== GLOBAL RESET MINIMO ====== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ====== NAVBAR HEIGHT VARS (desktop/mobile) ====== */
+:root {
+  --nav-h: 64px;
+} /* desktop default */
+@media (max-width: 900px) {
+  :root {
+    --nav-h: 56px;
+  } /* mobile/tablet */
+}
+
+/* Quando la navbar è fixed, sposta TUTTO il contenuto sotto */
+html {
+  scroll-padding-top: var(--nav-h);
+} /* per i link con #ancora */
+body.rally-theme {
+  padding-top: var(--nav-h);
+}
+
+/* Evita “saltelli” quando appaiono/dispaiono scrollbar */
+html {
+  overflow-y: scroll;
+}
+
+/* Tema base (tuo stile già esistente) */
+body.rally-theme {
+  background: #0a0a0a;
+  color: #f2f2f2;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* opzionale: garantisce che il main non finisca nascosto da footer piccoli */
+main {
+  min-height: calc(100dvh - var(--nav-h));
+}

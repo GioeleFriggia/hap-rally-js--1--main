@@ -1,0 +1,73 @@
+/* ============================
+   FONT GLOBALE: Courier Prime
+   ============================ */
+
+:root {
+  --font-typewriter: CourierPrime, "Courier Prime", ui-monospace,
+    "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    Courier, monospace;
+}
+
+/* Forza il font globalmente */
+html,
+body,
+.rally-theme {
+  font-family: var(--font-typewriter) !important;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Elementi testuali */
+p,
+li,
+a,
+span,
+strong,
+em,
+small,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+blockquote,
+figcaption,
+table,
+th,
+td,
+button,
+input,
+textarea,
+select,
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-typewriter) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+p,
+li {
+  letter-spacing: 0.1px;
+}
+
+/* Evita che la gallery si deformi */
+.gd-card,
+.gd-grid,
+.gd-skeleton,
+.gd-masonry,
+.gd-masonry-item {
+  line-height: 0;
+}

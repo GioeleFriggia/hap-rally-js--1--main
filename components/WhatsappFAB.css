@@ -1,0 +1,27 @@
+.wa {
+  display: none !important;
+}
+
+.wa {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #22c55e;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  transform: translateZ(0);
+  transition: transform 0.2s ease;
+}
+.wa:hover {
+  transform: scale(1.05);
+}
+.wa__icon {
+  width: 28px;
+  height: 28px;
+}

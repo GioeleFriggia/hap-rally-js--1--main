@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_n6YgrEpGJAVi0cFkGB5NRMVyWh0w",
+  "orgId": "team_trMoyUWM7TAxUl1ERl6yrCSc",
+  "projectName": "hap-rally-js-1-main",
+  "settings": {
+    "createdAt": 1762445545709,
+    "framework": "nextjs",
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "22.x"
+  }
+}

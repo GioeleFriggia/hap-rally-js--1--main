@@ -1,0 +1,169 @@
+/* ===== TEAM STRIP ===== */
+.team {
+  position: relative;
+  z-index: 1;
+}
+
+.team .title {
+  margin: 0 0 8px;
+}
+
+.team .muted {
+  color: #cfcfcf;
+  opacity: 0.9;
+  margin: 0 0 24px;
+}
+
+/* === BANNER DOPO H2 === */
+.team__banner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  min-height: 220px;
+  margin: 12px 0 28px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #262626;
+  background: #0b0b0b;
+
+  transform: translateY(14px);
+  opacity: 0;
+  transition: transform 420ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 420ms linear, box-shadow 240ms linear;
+}
+
+.team__banner.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.team__banner:hover {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+
+.team__bannerImg {
+  object-fit: cover;
+  object-position: 50% 55%;
+  filter: brightness(1.04) contrast(1.05);
+  transition: transform 400ms ease, filter 200ms linear;
+}
+
+.team__banner:hover .team__bannerImg {
+  transform: scale(1.03);
+  filter: brightness(1.08);
+}
+
+.team__bannerShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 65%,
+    rgba(0, 0, 0, 0.28)
+  );
+  pointer-events: none;
+}
+
+/* === GRIGLIA CARD === */
+.team__grid {
+  display: grid;
+  gap: 20px;
+}
+
+.team__grid--two {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .team__grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* === CARD === */
+.team__card {
+  background: linear-gradient(
+    180deg,
+    rgba(16, 16, 16, 0.9),
+    rgba(16, 16, 16, 0.7)
+  );
+  border: 1px solid #262626;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenitore immagine */
+.team__img {
+  position: relative;
+  --team-ratio: 16 / 9;
+  aspect-ratio: var(--team-ratio);
+  min-height: 260px;
+  background: #050505;
+  overflow: hidden;
+  border-bottom: 1px solid #1f1f1f;
+}
+
+@media (max-width: 900px) {
+  .team__img {
+    --team-ratio: 4 / 3;
+  }
+}
+
+/* Immagine standard: riempie la card */
+.team__imgEl {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+/* Gaetano: vogliamo vedere tutta la foto (tipo anteprima piccola) */
+.team__imgEl--contain {
+  object-fit: contain !important;
+  background-color: #050505; /* bordi neri laterali, come nello screenshot */
+}
+
+/* Overlay gradiente */
+.team__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 65%, rgba(0, 0, 0, 0.28));
+}
+
+/* Hover: leggero zoom */
+.team__card:hover .team__imgEl {
+  transform: scale(1.04);
+}
+
+/* Corpo testo */
+.team__body {
+  padding: 16px 18px 20px;
+}
+
+.team__name {
+  font-family: "Space Grotesk", "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  font-size: clamp(18px, 3vw, 22px);
+  margin: 0 0 6px;
+  letter-spacing: 0.02em;
+}
+
+.team__role {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ffde59;
+  font-size: 13px;
+  opacity: 0.95;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .team__banner {
+    aspect-ratio: 16 / 9;
+  }
+}

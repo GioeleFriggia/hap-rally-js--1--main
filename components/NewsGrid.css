@@ -1,0 +1,124 @@
+/* ===== SEZIONE NEWS (stile originale + distanza sistemata) ===== */
+
+#news.section {
+  margin-top: -30px; /* Avvicina la sezione al blocco precedente */
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+/* Titolo principale — ripristinato color lime e allineamento sinistro */
+.title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: left;
+  margin-bottom: 40px;
+  color: #a3f106; /* ✅ colore originale lime */
+  letter-spacing: 1px;
+  font-family: "Oswald", "Inter", sans-serif;
+}
+
+/* ===== Griglia news ===== */
+.news {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .news {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+/* ===== CARD BASE ===== */
+.news__card {
+  position: relative;
+  background: rgba(20, 20, 20, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.news__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 18px rgba(255, 180, 0, 0.15);
+}
+
+/* ===== IMMAGINE ===== */
+.news__img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.news__imgEl {
+  object-fit: cover;
+  filter: brightness(0.9);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+.news__card:hover .news__imgEl {
+  filter: brightness(1.05);
+  transform: scale(1.03);
+}
+
+/* ===== CONTENUTO ===== */
+.news__body {
+  padding: 20px 24px;
+  text-align: left;
+}
+
+/* Data */
+.news__date {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+
+/* Titolo news */
+.news__title {
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+/* ===== PULSANTE “Read More” ===== */
+.news__more {
+  background: linear-gradient(90deg, #ff0000, #ff7300);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.news__more:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255, 100, 0, 0.4);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  #news.section {
+    margin-top: -20px;
+    padding-top: 36px;
+    padding-bottom: 60px;
+  }
+
+  .title {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    margin-bottom: 32px;
+  }
+
+  .news__body {
+    padding: 16px 18px;
+  }
+
+  .news__title {
+    font-size: 1.1rem;
+  }
+}

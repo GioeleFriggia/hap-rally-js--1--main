@@ -1,0 +1,31 @@
+.gate-wrap {
+  padding: 48px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  color: #fff;
+}
+.gate-title {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.gate-desc {
+  opacity: 0.9;
+  margin: 8px 0 16px;
+}
+.gate-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+.gate-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #ffffff1a;
+}
+.gate-note {
+  font-size: 14px;
+  opacity: 0.7;
+}
+.gate-fallback {
+  height: 40vh;
+}

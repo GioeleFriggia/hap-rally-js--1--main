@@ -1,0 +1,78 @@
+/* ===== STRIP STATS RALLY ===== */
+.stats {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 40px 0 60px; /* ⬅️ ridotto lo spazio superiore da 60px → 40px */
+  margin-top: -100px; /* ⬅️ avvicina ancora di più il blocco a quello sopra */
+}
+
+@media (min-width: 768px) {
+  .stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* CARD BASE */
+.stat {
+  position: relative;
+  text-align: center;
+  padding: 32px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+/* Effetto bagliore interno */
+.stat__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 200, 0, 0.12) 0%,
+    rgba(255, 136, 0, 0.05) 60%,
+    transparent 100%
+  );
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+/* Numero */
+.stat__value {
+  position: relative;
+  font-family: "Oswald", "Inter", sans-serif;
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 52px);
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #ff0000, #ff4000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(255, 200, 0, 0.3);
+  z-index: 1;
+}
+
+/* Etichetta */
+.stat__label {
+  position: relative;
+  margin-top: 10px;
+  color: #c7c7c7;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  z-index: 1;
+}
+
+/* Hover dinamico */
+.stat:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 0 20px rgba(255, 180, 0, 0.15),
+    0 0 8px rgba(255, 140, 0, 0.25) inset;
+}
+.stat:hover .stat__glow {
+  opacity: 1;
+}
